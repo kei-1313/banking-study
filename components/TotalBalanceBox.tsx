@@ -1,8 +1,6 @@
-// import AnimatedCounter from './AnimatedCounter';
-// import DoughnutChart from './DoughnutChart';
-
 import { formatAmount } from "@/lib/utils"
 import AnimatedCounter from "./AnimatedCounter"
+import DoughnutChart from "./ui/DoughnutChart"
 
 const TotalBalanceBox = ({
   accounts = [], totalBanks, totalCurrentBalance
@@ -10,7 +8,7 @@ const TotalBalanceBox = ({
   return (
     <section className="total-balance">
       <div className="total-balance-chart">
-        {/* <DoughnutChart accounts={accounts} /> */}
+        <DoughnutChart />
       </div>
 
       <div className="flex flex-col gap-6">
