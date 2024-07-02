@@ -1,4 +1,5 @@
 import HeaderBox from '@/components/HeaderBox'
+import RightSidebar from '@/components/RightSidebar';
 import TotalBalanceBox from '@/components/TotalBalanceBox';
 import React from 'react'
 
@@ -21,6 +22,10 @@ const Home = () => {
           />
         </header>
       </div>
+
+      <RightSidebar
+       
+      />
     </section>
   )
 }
