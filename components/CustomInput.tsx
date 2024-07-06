@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react'
 import { FormControl, FormField, FormLabel, FormMessage } from './ui/form'
 import { Input } from './ui/input'
 
@@ -33,6 +32,7 @@ const CustomInput = ({control, name, label, placeholder}: CustomInput) => {
                 placeholder={placeholder}
                 className="input-class"
                 type={name === 'password' ? 'password' : 'text'}
+                id={name}
                 {...field}
               />
             </FormControl>

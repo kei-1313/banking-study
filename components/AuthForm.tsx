@@ -20,8 +20,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput'
+import { useRouter } from 'next/navigation';
 
 const AuthForm = ({type}: {type:string} ) => {
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,16 +34,28 @@ const AuthForm = ({type}: {type:string} ) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      password: ''
+      password: ""
     },
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true)
+    console.log(values)
+
+    try {
+      if(type === "sign-up") {
+        // const newUser = await signUp(data);
+      }
+
+      if(type === "sign-in") {
+
+      }
+    } catch (error) {
+      
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
