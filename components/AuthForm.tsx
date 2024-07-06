@@ -23,6 +23,7 @@ import CustomInput from './CustomInput'
 import { useRouter } from 'next/navigation';
 import { signIn, signUp } from '@/lib/actions/user.actions';
 import Link from 'next/link';
+import PlaidLink from './PlaidLink';
 
 const AuthForm = ({type}: {type:string} ) => {
   const router = useRouter();
@@ -46,12 +47,28 @@ const AuthForm = ({type}: {type:string} ) => {
 
     try {
       if(type === "sign-up") {
-        const newUser = await signUp(data);
+        
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          address1: data.address1!,
+          city: data.city!,
+          state: data.state!,
+          postalCode: data.postalCode!,
+          dateOfBirth: data.dateOfBirth!,
+          ssn: data.ssn!,
+          email: data.email,
+          password: data.password
+        }
+
+        // server actions
+        const newUser = await signUp(userData);
+
         setUser(newUser)
-        router.push("/sign-up")
       }
 
       if(type === "sign-in") {
+        // server actions
         const res = await signIn({
           email: data.email,
           password: data.password
@@ -98,7 +115,7 @@ const AuthForm = ({type}: {type:string} ) => {
       </header>
       {user ? (
         <div className="flex flex-col gap-4">
-        {/* <PlaidLink user={user} variant="primary" /> */}
+        <PlaidLink user={user} variant="primary" />
       </div>
       ):(
         <>
