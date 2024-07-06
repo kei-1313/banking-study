@@ -1,6 +1,6 @@
 "use client"
 
-import { Link, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { authFormSchema } from '@/lib/utils';
@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput'
 import { useRouter } from 'next/navigation';
 import { signIn, signUp } from '@/lib/actions/user.actions';
+import Link from 'next/link';
 
 const AuthForm = ({type}: {type:string} ) => {
   const router = useRouter();
@@ -68,7 +69,7 @@ const AuthForm = ({type}: {type:string} ) => {
   return (
     <section className="auth-form">
       <header className='flex flex-col gap-5 md:gap-8'>
-          {/* <Link href="/" className="cursor-pointer flex items-center gap-1">
+          <Link href="/" className="cursor-pointer flex items-center gap-1">
             <Image 
               src="/icons/logo.svg"
               width={34}
@@ -76,7 +77,7 @@ const AuthForm = ({type}: {type:string} ) => {
               alt="Horizon logo"
             />
             <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Horizon</h1>
-          </Link> */}
+          </Link>
 
           <div className="flex flex-col gap-1 md:gap-3">
             <h1 className="text-24 lg:text-36 font-semibold text-gray-900">

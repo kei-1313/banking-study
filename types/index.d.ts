@@ -216,8 +216,8 @@ declare interface FooterProps {
 
 declare interface RightSidebarProps {
   user: User;
-  transactions: Transaction[];
-  banks: Bank[] & Account[];
+  // transactions: Transaction[];
+  // banks: Bank[] & Account[];
 }
 
 declare interface SiderbarProps {
