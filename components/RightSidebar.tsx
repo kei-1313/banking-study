@@ -5,7 +5,7 @@ import React from 'react'
 import { countTransactionCategories } from '@/lib/utils'
 // import Category from './Category'
 
-const RightSidebar = () => {
+const RightSidebar = ({user}: RightSidebarProps) => {
   // const categories: CategoryCount[] = countTransactionCategories(transactions);
 
   return (
@@ -19,10 +19,10 @@ const RightSidebar = () => {
 
           <div className="profile-details">
             <h1 className='profile-name'>
-              Keiichiro oki
+              {user.name}
             </h1>
             <p className="profile-email">
-             test@gmain.com
+              {user.email}
             </p>
           </div>
         </div>

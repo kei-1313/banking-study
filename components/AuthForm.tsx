@@ -21,6 +21,7 @@ import {
 import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput'
 import { useRouter } from 'next/navigation';
+import { signIn, signUp } from '@/lib/actions/user.actions';
 
 const AuthForm = ({type}: {type:string} ) => {
   const router = useRouter();
@@ -39,17 +40,23 @@ const AuthForm = ({type}: {type:string} ) => {
   })
  
   // 2. Define a submit handler.
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true)
-    console.log(values)
 
     try {
       if(type === "sign-up") {
-        // const newUser = await signUp(data);
+        const newUser = await signUp(data);
+        setUser(newUser)
+        router.push("/sign-up")
       }
 
       if(type === "sign-in") {
+        const res = await signIn({
+          email: data.email,
+          password: data.password
+        });
 
+        if(res) router.push('/')
       }
     } catch (error) {
       
