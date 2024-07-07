@@ -248,9 +248,9 @@ declare interface CategoryProps {
   category: CategoryCount;
 }
 
-declare interface DoughnutChartProps {
-  accounts: Account[];
-}
+// declare interface DoughnutChartProps {
+//   accounts: Account[];
+// }
 
 declare interface PaymentTransferFormProps {
   accounts: Account[];
@@ -327,4 +327,12 @@ declare interface getBankProps {
 
 declare interface getBankByAccountIdProps {
   accountId: string;
+}
+
+declare interface DoughnutChartData {
+  name: string,
+  value: number
+}
+declare interface DoughnutChartProps {
+  DoughnutChartData: DoughnutChartData[]
 }

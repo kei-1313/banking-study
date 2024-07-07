@@ -25,7 +25,7 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
       USER_COLLECTION_ID!,
       [Query.equal('userId', [userId])]
     )
-
+    
     return parseStringify(user.documents[0]);
   } catch (error) {
     console.log(error)
@@ -44,11 +44,12 @@ export const signIn = async ({ email, password }: signInProps) => {
       secure: true,
     });
 
-    // const user = await getUserInfo({ userId: session.userId }) 
+    const user = await getUserInfo({ userId: session.userId });
 
-    // return parseStringify(user);
+    console.log("getUserInfo", user);
+  
 
-    return parseStringify(session);
+    return parseStringify(user);
   } catch (error) {
     console.error('Error', error);
   }
@@ -113,9 +114,9 @@ export async function getLoggedInUser() {
     const { account } = await createSessionClient();
     const result = await account.get();
 
-    // const user = await getUserInfo({ userId: result.$id})
+    const user = await getUserInfo({ userId: result.$id})
 
-    return parseStringify(result);
+    return parseStringify(user);
   } catch (error) {
     console.log(error)
     return null;

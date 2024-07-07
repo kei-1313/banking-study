@@ -5,10 +5,19 @@ import DoughnutChart from "./ui/DoughnutChart"
 const TotalBalanceBox = ({
   accounts = [], totalBanks, totalCurrentBalance
 }: TotalBalanceBoxProps) => {
+
+   // 円グラフのデータを作成 アカウントのデータは安易にクライアントコンポーネントにPropsで渡したくない。
+  // クライアント側でレンダリングされるため、情報がむき出しになっている？
+    const DoughnutChartData = accounts.map((account: Account) => ({
+      name: account.name,
+      value: account.currentBalance
+  }))
+  console.log(DoughnutChartData);
+
   return (
     <section className="total-balance">
       <div className="total-balance-chart">
-        <DoughnutChart />
+        <DoughnutChart DoughnutChartData={DoughnutChartData}/>
       </div>
 
       <div className="flex flex-col gap-6">

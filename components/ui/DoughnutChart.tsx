@@ -14,13 +14,8 @@ interface renderCustomizedLabelProps  {
 }
 
 
-const DoughnutChart = () => {
-  const data = [
-    { name: 'Bank A', value: 400 },
-    { name: 'Bank B', value: 300 },
-    { name: 'Bank C', value: 300 },
-    { name: 'Bank D', value: 200 },
-  ];
+const DoughnutChart = ({DoughnutChartData}: DoughnutChartProps) => {
+  const data = DoughnutChartData;
   
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   
