@@ -60,7 +60,7 @@ declare type Account = {
   type: string;
   subtype: string;
   appwriteItemId: string;
-  shareableId: string;
+  sharaebleId: string;
 };
 
 declare type Transaction = {
@@ -335,4 +335,9 @@ declare interface DoughnutChartData {
 }
 declare interface DoughnutChartProps {
   DoughnutChartData: DoughnutChartData[]
+}
+
+declare interface BankCardProps {
+  account: Account,
+  userName: string
 }
