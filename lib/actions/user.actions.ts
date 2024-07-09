@@ -35,8 +35,11 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
 export const signIn = async ({ email, password }: signInProps) => {
   try {
     const { account } = await createAdminClient();
+
+    //セッションの作成
     const session = await account.createEmailPasswordSession(email, password);
 
+    // cookieの保存 レスポンスのときに設定する内容も記載 レスポンスのcookies情報をみて、実際にcookieに値を保存しているのはブラウザ
     cookies().set("appwrite-session", session.secret, {
       path: "/",
       httpOnly: true,
@@ -44,10 +47,10 @@ export const signIn = async ({ email, password }: signInProps) => {
       secure: true,
     });
 
+
     const user = await getUserInfo({ userId: session.userId });
 
     console.log("getUserInfo", user);
-  
 
     return parseStringify(user);
   } catch (error) {

@@ -24,6 +24,7 @@ export async function createSessionClient() {
   };
 }
 
+// appwriteにアクセスするためのクライアントを作成
 export async function createAdminClient() {
   const client = new Client()
     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
