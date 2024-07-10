@@ -64,9 +64,10 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
   let newUserAccount;
 
   try {
-    //Create a new user
+    // app writeのクライアントを作成 
     const { account, database } = await createAdminClient();
 
+    //ここでなぜアカウントを作っている？？？
     newUserAccount = await account.create(
       ID.unique(), 
       email, 
@@ -85,6 +86,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
 
     const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
 
+    // app writeのuserテーブルにアカウント情報を作成し、保存する
     const newUser = await database.createDocument(
       DATABASE_ID!,
       USER_COLLECTION_ID!,
