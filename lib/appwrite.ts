@@ -9,12 +9,15 @@ export async function createSessionClient() {
     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
     .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!);
 
+  // リクエストに含まれるcookiesからセッションIDを取得
   const session = cookies().get("appwrite-session");
 
   if (!session || !session.value) {
     throw new Error("No session");
   }
 
+  // Making authenticated requests 
+  // Pass the session cookie to the Appwrite client
   client.setSession(session.value);
 
   return {
