@@ -54,11 +54,15 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
 
     try {
       const receiverAccountId = decryptId(data.sharableId);
+      //受け取る側のbank情報を取得
       const receiverBank = await getBankByAccountId({
         accountId: receiverAccountId,
       });
+
+      //送る側のbank情報を取得
       const senderBank = await getBank({ documentId: data.senderBank });
 
+      //送金のためのパラメータを作成
       const transferParams = {
         sourceFundingSourceUrl: senderBank.fundingSourceUrl,
         destinationFundingSourceUrl: receiverBank.fundingSourceUrl,

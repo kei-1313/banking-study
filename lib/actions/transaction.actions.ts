@@ -30,6 +30,7 @@ export const createTransaction = async (transaction: CreateTransactionProps) => 
   }
 }
 
+// バンクごとの取引をみたい
 export const getTransactionsByBankId = async ({bankId}: getTransactionsByBankIdProps) => {
   try {
     const { database } = await createAdminClient();

@@ -12,7 +12,6 @@ const TotalBalanceBox = ({
       name: account.name,
       value: account.currentBalance
   }))
-  console.log(DoughnutChartData);
 
   return (
     <section className="total-balance">

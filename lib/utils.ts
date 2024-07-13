@@ -78,6 +78,7 @@ export function formatAmount(amount: number): string {
 
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 
+// value から単語文字（アルファベット、数字、アンダースコア）と空白文字以外のすべての特殊文字を削除します。
 export const removeSpecialCharacters = (value: string) => {
   return value.replace(/[^\w\s]/gi, "");
 };
@@ -190,8 +191,11 @@ export function decryptId(id: string) {
 }
 
 export const getTransactionStatus = (date: Date) => {
+  // 今日の日付を取得
   const today = new Date();
+  //わかりやすいように変数に保存
   const twoDaysAgo = new Date(today);
+  // 2日前の日付を取得
   twoDaysAgo.setDate(today.getDate() - 2);
 
   return date > twoDaysAgo ? "Processing" : "Success";

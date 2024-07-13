@@ -50,8 +50,6 @@ export const signIn = async ({ email, password }: signInProps) => {
 
     const user = await getUserInfo({ userId: session.userId });
 
-    console.log("getUserInfo", user);
-
     return parseStringify(user);
   } catch (error) {
     console.error('Error', error);
@@ -64,10 +62,11 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
   let newUserAccount;
 
   try {
-    // app writeのクライアントを作成 
+    // 1 app writeのクライアントを作成
     const { account, database } = await createAdminClient();
 
-    //ここでなぜアカウントを作っている？？？
+    // appwriteのアカウントを作成 アプリケーションのユーザ情報を最適に扱うためにappwriteのaccountを作る必要がある docsに記載あり
+    // https://appwrite.io/docs/references/cloud/client-web/account
     newUserAccount = await account.create(
       ID.unique(), 
       email, 
@@ -86,7 +85,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
 
     const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
 
-    // app writeのuserテーブルにアカウント情報を作成し、保存する
+    // appwriteのuserテーブルにアカウント情報を作成し、保存する
     const newUser = await database.createDocument(
       DATABASE_ID!,
       USER_COLLECTION_ID!,
@@ -99,8 +98,10 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
       }
     )
 
+    // セッションの作成
     const session = await account.createEmailPasswordSession(email, password);
 
+    // クッキーにセッションをいれる
     cookies().set("appwrite-session", session.secret, {
       path: "/",
       httpOnly: true,
@@ -152,6 +153,8 @@ export const createLinkToken = async (user: User) => {
       country_codes: ['US'] as CountryCode[],
     }
 
+    // リンクセッションを初期化させるためにトークンの作成
+    // link_tokenが作成されるとpublic_tokenとなり、returnされる そしてpublic_tokenがaccess_tokenとなる
     const response = await plaidClient.linkTokenCreate(tokenParams);
 
     return parseStringify({ linkToken: response.data.link_token })
@@ -218,6 +221,7 @@ export const exchangePublicToken = async ({
       processor: "dwolla" as ProcessorTokenCreateRequestProcessorEnum,
     };
 
+    // 取引の処理を行ってくれるパートナーとの連携をするためにトークンの発行
     const processorTokenResponse = await plaidClient.processorTokenCreate(request);
     const processorToken = processorTokenResponse.data.processor_token;
 

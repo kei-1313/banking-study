@@ -41,6 +41,7 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
       </TableHeader>
       <TableBody>
         {transactions.map((t: Transaction) => {
+          // 2日前であれば、procceing 、2日後であれば、success
           const status = getTransactionStatus(new Date(t.date))
           const amount = formatAmount(t.amount)
 

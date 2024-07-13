@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import  { BankTabItem } from './BankTabItem'
 import { BankInfo } from './BankInfo'
@@ -20,7 +21,7 @@ const RecentTransactions = ({
   const currentTransactions = transactions.slice(
     indexOfFirstTransaction, indexOfLastTransaction
   )
-
+  
   return (
     <section className="recent-transactions">
       <header className="flex items-center justify-between">

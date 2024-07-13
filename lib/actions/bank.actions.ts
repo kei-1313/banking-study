@@ -24,6 +24,7 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
     const accounts = await Promise.all(
       banks?.map(async (bank: Bank) => {
         // get each account info from plaid
+        // bankのアクセストークンを使い、通信している
         const accountsResponse = await plaidClient.accountsGet({
           access_token: bank.accessToken,
         });
@@ -156,6 +157,8 @@ export const getTransactions = async ({
   try {
     // Iterate through each page of new transaction updates for item
     while (hasMore) {
+
+      // 取引をPlaid側と同期させている Plaid側で変更があっても内容が同期されるように
       const response = await plaidClient.transactionsSync({
         access_token: accessToken,
       });

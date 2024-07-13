@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import Copy from './Copy'
-// import Copy from './Copy'
 
 const BankCard = ({account, userName, showBalance = true}: CreditCardProps) => {
   

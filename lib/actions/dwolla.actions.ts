@@ -39,6 +39,7 @@ export const createFundingSource = async (
   }
 };
 
+//dwollaとplaidが認証するために認証リンクを送っている
 export const createOnDemandAuthorization = async () => {
   try {
     const onDemandAuthorization = await dwollaClient.post(
