@@ -28,6 +28,7 @@ export const createFundingSource = async (
   options: CreateFundingSourceOptions
 ) => {
   try {
+    // 同じ銀行を選択するとうまくいかない
     return await dwollaClient
       .post(`customers/${options.customerId}/funding-sources`, {
         name: options.fundingSourceName,

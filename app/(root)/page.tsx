@@ -17,9 +17,13 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   //アカウントのデータを変数に格納
   const accountsData = accouts?.data;
 
+  console.log(accountsData);
+  
+
   const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
 
   const account = await getAccount({ appwriteItemId });
+  
 
   return (
     <section className="home">
@@ -28,8 +32,9 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={loggedIn?.firstName || 'Guest'}
+            user={loggedIn.firstName || "Guest"}
             subtext="Access and manage your account and transactions efficiently."
+
           />
           <TotalBalanceBox
             accounts={accountsData}
