@@ -53,6 +53,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
     setIsLoading(true);
 
     try {
+      // デコードする
       const receiverAccountId = decryptId(data.sharableId);
       //受け取る側のbank情報を取得
       const receiverBank = await getBankByAccountId({

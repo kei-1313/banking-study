@@ -242,7 +242,7 @@ export const exchangePublicToken = async ({
       accountId: accountData.account_id,
       accessToken,
       fundingSourceUrl,
-      shareableId: encryptId(accountData.account_id),
+      shareableId: encryptId(accountData.account_id), // コピーが必要でフロント側に表示する必要があるから
     });
 
     // Revalidate the path to reflect the changes
